@@ -4,14 +4,16 @@
 
 <% array.forEach(function(post){ %>
 <h2>
-	Title: <%= array[0].title %>
+	Title: <%= post.title %>
 </h2>
 <h2>
-	Content: <%= array[0].content %>
+	Content: <%= post.content %>
 </h2>
 <h2>
-	<img src="<%= array[0].image %>">
+	<img src="<%= post.image %>">
 </h2>
 <% }) %>
 
 <a href ="/form">Add another</a>
+
+
