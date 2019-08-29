@@ -1,10 +1,13 @@
-let express = require("express");
-	mongoose = require ("mongoose");
-	bodyParser = require("body-parser");
+let express = require("express"),
+	mongoose = require ("mongoose"),
+	bodyParser = require("body-parser"),
 	app = express();
 
 //express to extract the post request
-app.use(express.urlencoded())
+app.use(express.static(__dirname + '/public'));
+
+//to make sense of the post data
+app.use(bodyParser.urlencoded({extended: true}));
 
 //render index page at route "/"
 app.get("/", (req, res) => {
@@ -17,11 +20,11 @@ app.get("/form", (req, res) => {
 });
 
 //post from form
-app.post("/form", (req, res) => {
+app.post("/", (req, res) => {
 	let title = req.body.title;
 	let content = req.body.content;
 	let image = req.body.image;
-	res.redirect("/");
+	res.redirect({title: title, content: content, image: image}, "/")
 })
 
 // initialise port
