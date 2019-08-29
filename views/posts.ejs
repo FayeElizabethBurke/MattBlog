@@ -1,0 +1,17 @@
+<h1>
+	 This is your post
+</h1>
+
+<% array.forEach(function(post){ %>
+<h2>
+	Title: <%= array[0].title %>
+</h2>
+<h2>
+	Content: <%= array[0].content %>
+</h2>
+<h2>
+	<img src="<%= array[0].image %>">
+</h2>
+<% }) %>
+
+<a href ="/form">Add another</a>

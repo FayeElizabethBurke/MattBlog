@@ -3,6 +3,7 @@ let express = require("express"),
 	bodyParser = require("body-parser"),
 	app = express();
 
+let array =[];
 //express to extract the post request
 app.use(express.static(__dirname + '/public'));
 
@@ -19,12 +20,18 @@ app.get("/form", (req, res) => {
 	res.render("form.ejs");
 });
 
+app.get("/posts", (req, res) => {
+	res.render("posts.ejs", {array :array})
+})
+
 //post from form
-app.post("/", (req, res) => {
+app.post("/posts", (req, res) => {
 	let title = req.body.title;
 	let content = req.body.content;
 	let image = req.body.image;
-	res.redirect({title: title, content: content, image: image}, "/")
+	let newPost = {title: title, content: content, image: image};
+	array.push(newPost);
+	res.redirect("/posts")
 })
 
 // initialise port
