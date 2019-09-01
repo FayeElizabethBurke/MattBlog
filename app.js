@@ -3,7 +3,12 @@ let express = require("express"),
 	bodyParser = require("body-parser"),
 	app = express();
 
-let array =[];
+let array =[
+	        	{title: "title1", content: "content1", image: "image1"}, 
+                {title: "title2", content: "content2", image: "image2"}, 
+                {title: "title3", content: "content3", image: "image3"}, 
+                {title: "title4", content: "content4", image: "image4"}
+];
 //express to extract the post request
 app.use(express.static(__dirname + '/public'));
 
@@ -38,3 +43,4 @@ app.post("/posts", (req, res) => {
 app.listen(3000, (req, res) => {
 		   console.log("server is listening")
 });
+
