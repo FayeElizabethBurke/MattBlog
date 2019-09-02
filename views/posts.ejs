@@ -6,16 +6,23 @@
 <%     let oldPosts = array[i] 					%>
 <%     } 										%>
 
-<!-- index page modal -->
-
-<div class="modal fade bd-example-modal-lg" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <% include index.ejs %>
-    </div>
-  </div>
+<!-- index page collapser -->
+<div class="wrapper">
+<div class="collapse show" id="collapseExample">
+<div class="jumbotron">
+	<h1>
+		 Plan B
+	</h1>
+	<h3>
+		Matt Davey
+	</h3>
+	</div>
 </div>
 
+  <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+    Enter
+  </button>
+	</div>
 <!-- 	Section One, most recent -->
 <div class="container">
         <div class="post" >
