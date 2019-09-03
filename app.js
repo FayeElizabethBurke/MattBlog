@@ -3,18 +3,25 @@ let express = require("express"),
 	bodyParser = require("body-parser"),
 	app = express();
 
-let array =[
-	        	{title: "title1", content: "content1", image: "https://www.gstatic.com/webp/gallery/3.jpg"}, 
-                {title: "title2", content: "content2", image: "https://www.gstatic.com/webp/gallery/4.jpg"}, 
-                {title: "title3", content: "content3", image: "https://images.unsplash.com/photo-1558403748-6d8a03390378?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"}, 
-                {title: "title4", content: "content4", image: "https://pixabay.com/get/52e3d14a4b5ab108f5d084609620367d1c3ed9e04e50744f732e7bd4944fc4_340.jpg"}
-];
+//connect to mongoose
+mongoose.connect('mongodb://localhost:27017/matts_blog', {useNewUrlParser: true});
+
+//database model setup
+let postSchema = new mongoose.Schema({
+	title: String,
+	content: String,
+	image: String
+});
+
+// make Post the model template
+let Entry = mongoose.model("Entry", postSchema);
+
 //express to extract the post request
 app.use(express.static(__dirname + '/public'));
 
 //to make sense of the post data
 app.use(bodyParser.urlencoded({extended: true}));
-
+app.set("view engine", "ejs"); 
 //render index page at route "/"
 app.get("/", (req, res) => {
 	res.render("index.ejs");
@@ -26,7 +33,9 @@ app.get("/form", (req, res) => {
 });
 
 app.get("/posts", (req, res) => {
-	res.render("posts.ejs", {array :array})
+	Entry.find({}, (err, allEntries) => {
+	res.render("posts", {entry: allEntries})
+	})
 })
 
 //post from form
@@ -35,8 +44,13 @@ app.post("/posts", (req, res) => {
 	let content = req.body.content;
 	let image = req.body.image;
 	let newPost = {title: title, content: content, image: image};
-	array.push(newPost);
-	res.redirect("/posts")
+	Entry.create(newPost, (err, newlyCreated) => {
+		if(err){
+		console.log("error")
+	} else {
+		res.redirect("/posts")
+	}
+	})
 })
 
 // initialise port

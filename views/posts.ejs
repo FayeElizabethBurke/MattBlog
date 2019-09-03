@@ -1,9 +1,9 @@
 <% include partials/header.ejs %>
 
-<%     let mostRecent = array.pop() 			%>
-<%     let previous = array[array.length-1] 	%>
-<%     for (let i=array.length-2; i>-1; i-=1){	%>
-<%     let oldPosts = array[i] 					%>
+<%     let mostRecent = entry.pop() 			%>
+<%     let previous = entry[entry.length-1] 	%>
+<%     for (let i=entry.length-2; i>-1; i-=1){	%>
+<%     let oldPosts = entry[i] 					%>
 <%     } 										%>
 
 <!-- index page collapser -->
@@ -51,6 +51,7 @@
                     <h5 class="card-title"><strong>This will be a caption</strong></h5>
                     <p class="card-text"><%= previous.content %></p>
                     <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+					<a href ="/show">Expand</a>
                 </div>
             </div>
         </div>
