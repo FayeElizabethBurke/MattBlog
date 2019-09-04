@@ -22,6 +22,7 @@ app.use(express.static(__dirname + '/public'));
 //to make sense of the post data
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs"); 
+
 //render index page at route "/"
 app.get("/", (req, res) => {
 	res.render("index.ejs");
@@ -52,6 +53,12 @@ app.post("/posts", (req, res) => {
 	}
 	})
 })
+
+app.get("/posts/:id", (req, res) => {
+	Entry.findById(req.params.id, function(err, foundEntry){
+		res.render("show.ejs", {entry: foundEntry});
+		})
+	})
 
 // initialise port
 app.listen(3000, (req, res) => {

@@ -1,10 +1,11 @@
 <% include partials/header.ejs %>
 
+<%  	let oldPosts = [];						%>
 <%     let mostRecent = entry.pop() 			%>
 <%     let previous = entry[entry.length-1] 	%>
 <%     for (let i=entry.length-2; i>-1; i-=1){	%>
-<%     let oldPosts = entry[i] 					%>
-<%     } 										%>
+<%     oldPosts.push(entry[i]);					%>
+<%     }; 										%>
 
 <!-- index page collapser -->
 <div class="wrapper">
@@ -19,64 +20,64 @@
 	</div>
 </div>
 <div class="collapseNav">
-  <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+  <button class="btn" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
     Enter
   </button>
 </div>
 	</div>
-<!-- 	Section One, most recent -->
-<div class="container">
-        <div class="post" >
+
+
+<!-- section 2 -->
+    <div class="container">
+		
+        <div class="custom-scrollbar post" >
             <span id="lpTitles">
                 <h2><strong><%= mostRecent.title %></strong></h2>
-                <h3><%= new Date().getFullYear();%></h3>
+                <h3>29th August 2019</h3>
             </span>
             
-            <div class="card" id="mostRecentCard">
+            <div class="card">
                 <img src="<%= mostRecent.image %>" class="card-img-top">
                 <div class="card-body">
-                    <h3>This will be a caption.</h3><br>
+                    <h3>mostRecent.caption</h3><br>
                     <p class="card-text"><%= mostRecent.content %></p>
                 </div>
             </div>
-        </div>
-
-<!-- Section Two, previous post -->
-	
-        <div class="post" style="height: 300px;">
+    	</div>
+ 
+<!-- section 3 -->
+        <div class="post custom-scrollbar" style="height: 300px;">
             <h2><%= previous.title %></h2>
             <div class="card mb-3">
                 <div class="card-body">
                     <img src="<%= previous.image %>" id="prevImage">
-                    <h5 class="card-title"><strong>This will be a caption</strong></h5>
-                    <p class="card-text"><%= previous.content %></p>
-                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-					<a href ="/show">Expand</a>
+                    <h5 class="card-title"><strong>previous.caption</strong></h5>
+                    <p class="card-text"><%= previous.content %>.</p>
+                    <p class="card-text"><small class="text-muted">previous.date</small></p>
                 </div>
             </div>
+			<a href="/posts/<%= previous._id %>" class="btn">Read</a>
         </div>
+
+    <!-- section 4 -->
 	
-<!--  Section Three, image cards with links to previous posts-->
-	
-        <h2 style="text-align: center;">Old posts</h2> 
-        <div class="post oldPosts">
-             
+	<h2 style="text-align: center;">Old posts</h2> 
+    <div class="custom-scrollbar post" id="oldPosts">
+<%    	oldPosts.forEach(function(oldie){ 					%>
             <div class="column">  
-                <img src="images/card1.jpg" class="oldImg">
+                <img src="<%= oldie.image %>" class="oldImg">
                 <div class="text">
-                        <h3>Image 1</h3>
+                    <h3><%= oldie.title %></h3>
+					<a href="/posts/<%= oldie._id %>" class="btn">Read</a>
                 </div>
-            </div>
-            <div class="column">  
-                <img src="images/card2.jpg" class="oldImg">
-            </div>
-            <div class="column">  
-                <img src="images/card3.jpg" class="oldImg">
-            </div>
-        </div>
-<a href ="/form">Add another</a>
+			</div>
+<%		})													%>
+	</div>
+
+
+<a href ="/form" style="text-align: center;">Add another</a>
 <br>
-<a href ="/">Index</a>
+<a href ="/" style="text-align: center;">Index</a>
 
 
 

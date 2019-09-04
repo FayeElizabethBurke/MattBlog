@@ -1,5 +1,10 @@
 <% include partials/header.ejs %>
 
-<%= previous.title %>
+<div class="container">
+	<h1><%= entry.title %></h1>
+	<img src="<%= entry.image %>">
+	<p><%= entry.content %></p>
+</div>
+
 
 <% include partials/footer.ejs %>

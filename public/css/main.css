@@ -7,6 +7,26 @@
 	font-family: 'Montserrat', sans-serif;
 }
 
+h3 {
+    text-align: center;
+    font-family: 'Lora', serif;
+}
+
+h2 {
+    margin-top: 50px;
+    font-size: 40px;
+}
+
+#lpTitles {
+    text-align: center;
+    font-family: 'Lora', serif;
+}
+
+.container {
+    margin: 0px;
+    width: 100%;
+}
+
 #postPage {
 	margin-bottom: 0px;
 }
@@ -22,6 +42,7 @@
 #title {
     padding-top: 60px;
     size: 100px;
+    font-family: 'Lora', serif;
 }
 
 .collapse {
@@ -33,10 +54,6 @@
 	margin-left: 47%;
 }
 
-#mostRecentCard {
-    height: 750px;
-    overflow: auto;
-}
 
 img {
     display: block;
@@ -51,19 +68,12 @@ p {
     text-indent: 35px;
 }
 
-.card .mb3 {
-    width: 200px;
-    overflow: auto;
-}
-
 .post {
     border: 1.5px solid lightgrey;
-    border-radius: 20px;
     box-sizing: border-box;
     padding-left: 20px;
     padding-bottom: 20px;
     margin-bottom: 20px;
-    overflow: auto;
     padding-right: 20px;
 }
 
@@ -75,8 +85,8 @@ p {
 }
 
 .column {
-    width: 50%;
-    padding: 3px;
+    width: 32%;
+    padding: 5px;
     position: relative;
     display: inline-block;
 }
@@ -87,9 +97,9 @@ p {
     float: left;
 }
 
-.oldPosts {
+#oldPosts {
     padding-top: 10px;
-    height: 400px;
+    height: 300px;
 }
 
 .column .text {
@@ -100,9 +110,27 @@ p {
     right: 0;
     top: 40%;
     text-align: center;
-    width: 60%;
 }
 
 .wrapper {
 	margin: 0px;
+}
+
+.custom-scrollbar {
+    height : 900px;
+    overflow-y : scroll; 
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+    width: 12px;
+}
+   
+.custom-scrollbar::-webkit-scrollbar-track {
+    background : lightgrey;
+}
+    
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background : rgba(255,255,255,0.5);
+    border-radius: 4px;
+    box-shadow:  0 0 2px rgba(0, 0, 0, 0.5);
 }
