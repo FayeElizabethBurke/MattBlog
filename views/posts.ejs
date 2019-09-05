@@ -28,16 +28,16 @@
 
 
 <!-- section 2 -->
-    <div class="container">
+    <div class="container" id="layout">
 		
-        <div class="custom-scrollbar post" >
+        <div class="post" >
             <span id="lpTitles">
                 <h2><strong><%= mostRecent.title %></strong></h2>
                 <h3>29th August 2019</h3>
             </span>
             
             <div class="card">
-                <img src="<%= mostRecent.image %>" class="card-img-top">
+                <img src="<%= mostRecent.image %>">
                 <div class="card-body">
                     <h3>mostRecent.caption</h3><br>
                     <p class="card-text"><%= mostRecent.content %></p>
@@ -46,8 +46,7 @@
     	</div>
  
 <!-- section 3 -->
-        <div class="post custom-scrollbar" style="height: 300px;">
-            <h2><%= previous.title %></h2>
+        <div class="post" style="height: 300px;">
             <div class="card mb-3">
                 <div class="card-body">
                     <img src="<%= previous.image %>" id="prevImage">
@@ -58,28 +57,21 @@
             </div>
 			<a href="/posts/<%= previous._id %>" class="btn">Read</a>
         </div>
-
-    <!-- section 4 -->
-	
+		
+<!-- section 4 -->
 	<h2 style="text-align: center;">Old posts</h2> 
-    <div class="custom-scrollbar post" id="oldPosts">
-<%    	oldPosts.forEach(function(oldie){ 					%>
-            <div class="column">  
-                <img src="<%= oldie.image %>" class="oldImg">
-                <div class="text">
-                    <h3><%= oldie.title %></h3>
-					<a href="/posts/<%= oldie._id %>" class="btn">Read</a>
-                </div>
-			</div>
-<%		})													%>
+    <div class="post" id="oldPosts">
+	<%oldPosts.forEach(function(oldie){%>
+        <div class="column">  
+            <img src="<%= oldie.image %>" class="oldImg">
+            <div class="text">
+                <h3><strong><%= oldie.title %></strong></h3>
+				<a href="/posts/<%= oldie._id %>" class="btn"><strong>Read</strong></a>
+            </div>
+		</div>
+	<%})%>
 	</div>
-
-
-<a href ="/form" style="text-align: center;">Add another</a>
-<br>
-<a href ="/" style="text-align: center;">Index</a>
-
-
+</div>
 
 <% include partials/footer.ejs %>
 
