@@ -1,8 +1,9 @@
 <% include partials/header.ejs %>
 
-<%  	let oldPosts = [];						%>
+<%     let oldPosts = [];						%>
 <%     let mostRecent = entry.pop() 			%>
 <%     let previous = entry[entry.length-1] 	%>
+<%	   let previousPrev= previous.content.slice(0, 700) + " ..."	%>
 <%     for (let i=entry.length-2; i>-1; i-=1){	%>
 <%     oldPosts.push(entry[i]);					%>
 <%     }; 										%>
@@ -20,7 +21,7 @@
 	</div>
 </div>
 <div class="collapseNav">
-  <button class="btn" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+  <button class="btn btnStyle" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
     Enter
   </button>
 </div>
@@ -36,37 +37,37 @@
                 <h3>29th August 2019</h3>
             </span>
             
-            <div class="card">
+            <div class="card" id="cards">
                 <img src="<%= mostRecent.image %>">
                 <div class="card-body">
-                    <h3>mostRecent.caption</h3><br>
+                    <h3><%= mostRecent.caption %></h3><br>
                     <p class="card-text"><%= mostRecent.content %></p>
                 </div>
             </div>
     	</div>
  
 <!-- section 3 -->
-        <div class="post" style="height: 300px;">
-            <div class="card mb-3">
+        <div class="post" style="height: 500px;">
+            <div class="card">
                 <div class="card-body">
                     <img src="<%= previous.image %>" id="prevImage">
-                    <h5 class="card-title"><strong>previous.caption</strong></h5>
-                    <p class="card-text"><%= previous.content %>.</p>
+                    <h5 class="card-title"><strong><%= previous.title %></strong></h5>
+                    <p class="card-text"><%= previousPrev %>.</p>
                     <p class="card-text"><small class="text-muted">previous.date</small></p>
                 </div>
+				<a href="/posts/<%= previous._id %>" class="btn btnStyle">Read</a>
             </div>
-			<a href="/posts/<%= previous._id %>" class="btn">Read</a>
         </div>
-		
+</div>
 <!-- section 4 -->
-	<h2 style="text-align: center;">Old posts</h2> 
+<h2 style="text-align: center;">Old posts</h2> 
     <div class="post" id="oldPosts">
 	<%oldPosts.forEach(function(oldie){%>
         <div class="column">  
             <img src="<%= oldie.image %>" class="oldImg">
             <div class="text">
                 <h3><strong><%= oldie.title %></strong></h3>
-				<a href="/posts/<%= oldie._id %>" class="btn"><strong>Read</strong></a>
+				<a href="/posts/<%= oldie._id %>" class="btn btnStyle"><strong>Read</strong></a>
             </div>
 		</div>
 	<%})%>

@@ -44,7 +44,8 @@ app.post("/posts", (req, res) => {
 	let title = req.body.title;
 	let content = req.body.content;
 	let image = req.body.image;
-	let newPost = {title: title, content: content, image: image};
+	let caption = req.body.caption;
+	let newPost = {title: title, content: content, image: image, caption: caption};
 	Entry.create(newPost, (err, newlyCreated) => {
 		if(err){
 		console.log("error")
