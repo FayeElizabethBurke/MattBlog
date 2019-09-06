@@ -27,10 +27,8 @@
 </div>
 	</div>
 
-
 <!-- section 2 -->
     <div class="container" id="layout">
-		
         <div class="post" >
             <span id="lpTitles">
                 <h2><strong><%= mostRecent.title %></strong></h2>
@@ -47,32 +45,33 @@
     	</div>
  
 <!-- section 3 -->
-        <div class="post" style="height: 500px;">
-            <div class="card">
-                <div class="card-body">
-                    <img src="<%= previous.image %>" id="prevImage">
-                    <h5 class="card-title"><strong><%= previous.title %></strong></h5>
-                    <p class="card-text"><%= previousPrev %>.</p>
-                    <p class="card-text"><small class="text-muted">previous.date</small></p>
-                </div>
-				<a href="/posts/<%= previous._id %>" class="btn btnStyle">Read</a>
+	<div class="post" style="height: 500px;">
+        <div class="card">
+            <div class="card-body">
+                <img src="<%= previous.image %>" id="prevImage">
+                <h5 class="card-title"><strong><%= previous.title %></strong></h5>
+                <p class="card-text"><%= previousPrev %>.</p>
+                <p class="card-text"><small class="text-muted">previous.date</small></p>
             </div>
+			<a href="/posts/<%= previous._id %>" class="btn btnStyle">Read</a>
         </div>
-</div>
-<!-- section 4 -->
-<h2 style="text-align: center;">Old posts</h2> 
-    <div class="post" id="oldPosts">
-	<%oldPosts.forEach(function(oldie){%>
-        <div class="column">  
-            <img src="<%= oldie.image %>" class="oldImg">
-            <div class="text">
-                <h3><strong><%= oldie.title %></strong></h3>
-				<a href="/posts/<%= oldie._id %>" class="btn btnStyle"><strong>Read</strong></a>
-            </div>
-		</div>
-	<%})%>
+    </div>
 	</div>
-</div>
+
+<!-- section 4 -->
+	<h2 style="text-align: center;">Old posts</h2> 
+		<div class="post" id="oldPosts">
+		<%oldPosts.forEach(function(oldie){%>
+			<div class="column">  
+				<img src="<%= oldie.image %>" class="oldImg">
+				<div class="text">
+					<h3><strong><%= oldie.title %></strong></h3>
+					<a href="/posts/<%= oldie._id %>" class="btn btnStyle"><strong>Read</strong></a>
+				</div>
+			</div>
+		<%})%>
+		</div>
+	</div>
 
 <% include partials/footer.ejs %>
 

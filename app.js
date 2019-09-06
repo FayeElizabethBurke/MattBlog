@@ -10,7 +10,8 @@ mongoose.connect('mongodb://localhost:27017/matts_blog', {useNewUrlParser: true}
 let postSchema = new mongoose.Schema({
 	title: String,
 	content: String,
-	image: String
+	image: String,
+	caption: String,
 });
 
 // make Post the model template

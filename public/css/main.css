@@ -73,11 +73,8 @@ h2 {
 }
 
 .btn {
-	background: linear-gradient(180deg, #FFFFFF 4.17%, rgba(255, 255, 255, 0) 81.77%), #D2CFC4;
-	border: 3px solid rgba(252, 186, 3, 0.5);
-	box-sizing: border-box;
-	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-	border-radius: 12px;
+	background: lightgrey;
+	border: 2px solid #fcba03;
 }
 
 #cards {
@@ -88,7 +85,8 @@ img {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 25px;
+    margin-bottom: 15px;
+	margin-top: 15px;
     width: 50%;
     border-radius: 10px;
 	opacity: 0.8;
