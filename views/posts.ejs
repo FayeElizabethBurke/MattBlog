@@ -32,14 +32,14 @@
         <div class="post" >
             <span id="lpTitles">
                 <h2><strong><%= mostRecent.title %></strong></h2>
-                <h3>29th August 2019</h3>
+                <h3><%= mostRecent.date.toDateString() %></h3>
             </span>
             
             <div class="card" id="cards">
                 <img src="<%= mostRecent.image %>">
                 <div class="card-body">
                     <h3><%= mostRecent.caption %></h3><br>
-                    <p class="card-text"><%= mostRecent.content %></p>
+                    <p class="card-text"><%- mostRecent.content %></p>
                 </div>
             </div>
     	</div>
@@ -51,7 +51,7 @@
                 <img src="<%= previous.image %>" id="prevImage">
                 <h5 class="card-title"><strong><%= previous.title %></strong></h5>
                 <p class="card-text"><%= previousPrev %>.</p>
-                <p class="card-text"><small class="text-muted">previous.date</small></p>
+                <p class="card-text"><small class="text-muted"><%= previous.date.toDateString() %></small></p>
             </div>
 			<a href="/posts/<%= previous._id %>" class="btn btnStyle">Read</a>
         </div>

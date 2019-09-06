@@ -12,6 +12,7 @@ let postSchema = new mongoose.Schema({
 	content: String,
 	image: String,
 	caption: String,
+	date: { type : Date, default: Date.now }
 });
 
 // make Post the model template
