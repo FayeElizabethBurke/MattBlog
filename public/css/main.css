@@ -7,6 +7,10 @@
 	font-family: 'Montserrat', sans-serif;
 }
 
+#lineUp {
+	display: inline;
+}
+
 .showTemplate {
 	padding: 30px;
 }

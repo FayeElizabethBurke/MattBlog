@@ -1,7 +1,8 @@
 let express = require("express"),
 	mongoose = require ("mongoose"),
 	bodyParser = require("body-parser"),
-	app = express();
+	app = express(),
+	methodOverride = require("method-override");
 
 //connect to mongoose
 mongoose.connect('mongodb://localhost:27017/matts_blog', {useNewUrlParser: true});
@@ -20,7 +21,7 @@ let Entry = mongoose.model("Entry", postSchema);
 
 //express to extract the post request
 app.use(express.static(__dirname + '/public'));
-
+app.use(methodOverride("_method"));
 //to make sense of the post data
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs"); 
@@ -63,6 +64,22 @@ app.get("/posts/:id", (req, res) => {
 		})
 	})
 
+//editt, update and destroy
+app.get("/posts/:id/edit", (req, res) => {
+	Entry.findById(req.params.id, function(err, foundEntry){
+		res.render("edit.ejs", {entry: foundEntry});
+		})
+	})
+app.put("/posts/:id", (req, res) => {
+	Entry.findByIdAndUpdate(req.params.id, req.body, function(err, foundEntry){
+		res.redirect("/posts/" + req.params.id);
+		})
+	})
+app.delete("/posts/:id", (req, res) =>{
+	Entry.findByIdAndRemove(req.params.id, function(deletedEntry){
+		res.redirect("/posts");
+	})
+})
 // initialise port
 app.listen(3000, (req, res) => {
 		   console.log("server is listening")

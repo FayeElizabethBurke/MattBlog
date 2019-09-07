@@ -7,10 +7,18 @@
 			<p><%= entry.caption %></p>
 			<p><strong><%= entry.date.toDateString() %></strong></p>
 			<p><%- entry.content %></p>
-			<a href="/posts" class="btn" id="btnStyle">Home</a>
-		</div>
-	</div>
-</div>
+			<a href="/posts" class="btn">Home</a>
+			<br>
+			
+		
 
+			
+		</div>
+	</div>	
+</div>
+		<form action="/posts/<%= entry._id %>?_method=DELETE" method="POST">
+		<button class="btn">Delete Post</button>
+		</form>
+<a href="/posts/<%= entry._id %>/edit" class="btn">Edit Post</button>
 
 <% include partials/footer.ejs %>
