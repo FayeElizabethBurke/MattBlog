@@ -1,22 +1,9 @@
 let express = require("express"),
 	mongoose = require ("mongoose"),
 	bodyParser = require("body-parser"),
-	passport = require("passport"),
 	localStrategy = require("passport-local"),
-	passportLocalMongoose = require("passport-local-mongoose"),
-	methodOverride = require("method-override"),
-	User = require("./models/user"),
 	app = express();
 
-app.use(require("express-session")({
-	secret: "this is an example of a secret",
-	resave: false,
-	saveUninitialized: false
-}))
-
-//use passport
-app.use(passport.initialize());
-app.use(passport.session());
 
 //express to extract the post request
 app.use(express.static(__dirname + '/public'));
