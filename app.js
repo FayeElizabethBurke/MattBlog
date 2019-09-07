@@ -1,8 +1,29 @@
 let express = require("express"),
 	mongoose = require ("mongoose"),
 	bodyParser = require("body-parser"),
-	app = express(),
-	methodOverride = require("method-override");
+	passport = require("passport"),
+	localStrategy = require("passport-local"),
+	passportLocalMongoose = require("passport-local-mongoose"),
+	methodOverride = require("method-override"),
+	User = require("./models/user"),
+	app = express();
+
+app.use(require("express-session")({
+	secret: "this is an example of a secret",
+	resave: false,
+	saveUninitialized: false
+}))
+
+//use passport
+app.use(passport.initialize());
+app.use(passport.session());
+
+//express to extract the post request
+app.use(express.static(__dirname + '/public'));
+app.use(methodOverride("_method"));
+//to make sense of the post data
+app.use(bodyParser.urlencoded({extended: true}));
+app.set("view engine", "ejs"); 
 
 //connect to mongoose
 mongoose.connect('mongodb://localhost:27017/matts_blog', {useNewUrlParser: true});
@@ -16,15 +37,11 @@ let postSchema = new mongoose.Schema({
 	date: { type : Date, default: Date.now }
 });
 
-// make Post the model template
 let Entry = mongoose.model("Entry", postSchema);
 
-//express to extract the post request
-app.use(express.static(__dirname + '/public'));
-app.use(methodOverride("_method"));
-//to make sense of the post data
-app.use(bodyParser.urlencoded({extended: true}));
-app.set("view engine", "ejs"); 
+// ========
+// ROUTES
+// ========
 
 //render index page at route "/"
 app.get("/", (req, res) => {
@@ -64,7 +81,7 @@ app.get("/posts/:id", (req, res) => {
 		})
 	})
 
-//editt, update and destroy
+//edit, update and destroy
 app.get("/posts/:id/edit", (req, res) => {
 	Entry.findById(req.params.id, function(err, foundEntry){
 		res.render("edit.ejs", {entry: foundEntry});
@@ -80,6 +97,23 @@ app.delete("/posts/:id", (req, res) =>{
 		res.redirect("/posts");
 	})
 })
+
+//========
+// AUTH ROUTES
+//========
+
+app.get("/login", (req, res) => {
+	res.render("login")
+})
+
+app.post("/login", (req, res) => {
+	let username = req.body.username;
+	let password = req.body.password;
+	if (username == "Matt123" && password == "password"){
+		res.redirect("/form")
+	}
+})
+
 // initialise port
 app.listen(3000, (req, res) => {
 		   console.log("server is listening")

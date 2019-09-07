@@ -40,6 +40,7 @@
                 <div class="card-body">
                     <h3><%= mostRecent.caption %></h3><br>
                     <p class="card-text"><%- mostRecent.content %></p>
+					<a href="/posts/<%= mostRecent._id %>" class="btn btnStyle"><strong>Read</strong></a>
                 </div>
             </div>
     	</div>
@@ -72,6 +73,7 @@
 		<%})%>
 		</div>
 	</div>
+<a href="/login" class="btn">Login</a>
 
 <% include partials/footer.ejs %>
 
