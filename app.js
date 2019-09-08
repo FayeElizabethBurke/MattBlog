@@ -2,6 +2,7 @@ let express = require("express"),
 	mongoose = require ("mongoose"),
 	bodyParser = require("body-parser"),
 	localStrategy = require("passport-local"),
+	methodOverride = require("method-override"),
 	app = express();
 
 
@@ -39,6 +40,12 @@ app.get("/", (req, res) => {
 app.get("/form", (req, res) => {
 	res.render("form.ejs");
 });
+
+app.get("/allposts", (req, res) => {
+	Entry.find({}, (err, allEntries) => {
+	res.render("allPosts", {entry: allEntries})
+	})
+})
 
 app.get("/posts", (req, res) => {
 	Entry.find({}, (err, allEntries) => {

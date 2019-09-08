@@ -1,0 +1,18 @@
+<% include partials/header %>
+<% entry.forEach(function(post){ %>
+<h2>
+	<%= post.title %>
+</h2>
+<h3>
+	<%= post.caption %>
+</h3>
+<div>
+			<form action="/posts/<%= post._id %>?_method=DELETE" method="POST">
+		<button class="btn">Delete Post</button>
+		</form>
+<a href="/posts/<%= post._id %>/edit" class="btn">Edit Post</button>
+</div>
+
+<% }); %>
+
+<% include partials/footer %>
