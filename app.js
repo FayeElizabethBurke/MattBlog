@@ -114,7 +114,5 @@ app.post("/login", (req, res) => {
 })
 
 // initialise port
-app.listen(3000, (req, res) => {
-		   console.log("server is listening")
-});
+app.listen(process.env.PORT || 5000)
 
