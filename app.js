@@ -22,7 +22,7 @@ let postSchema = new mongoose.Schema({
 	content: String,
 	image: String,
 	caption: String,
-	date: { type : Date, default: Date.now }
+	date: { type : Date, default: Date.now() }
 });
 
 let Entry = mongoose.model("Entry", postSchema);
@@ -31,10 +31,6 @@ let Entry = mongoose.model("Entry", postSchema);
 // ROUTES
 // ========
 
-//render index page at route "/"
-app.get("/", (req, res) => {
-	res.render("index.ejs");
-});
 
 //create form page
 app.get("/form", (req, res) => {
@@ -47,48 +43,49 @@ app.get("/allposts", (req, res) => {
 	})
 })
 
-app.get("/posts", (req, res) => {
+app.get("/", (req, res) => {
 	Entry.find({}, (err, allEntries) => {
 	res.render("posts", {entry: allEntries})
 	})
 })
 
 //post from form
-app.post("/posts", (req, res) => {
+app.post("/", (req, res) => {
 	let title = req.body.title;
 	let content = req.body.content;
 	let image = req.body.image;
 	let caption = req.body.caption;
+	let date = Date.now();
 	let newPost = {title: title, content: content, image: image, caption: caption};
 	Entry.create(newPost, (err, newlyCreated) => {
 		if(err){
 		console.log("error")
 	} else {
-		res.redirect("/posts")
+		res.redirect("/")
 	}
 	})
 })
 
-app.get("/posts/:id", (req, res) => {
+app.get("/:id", (req, res) => {
 	Entry.findById(req.params.id, function(err, foundEntry){
 		res.render("show.ejs", {entry: foundEntry});
 		})
 	})
 
 //edit, update and destroy
-app.get("/posts/:id/edit", (req, res) => {
+app.get("/:id/edit", (req, res) => {
 	Entry.findById(req.params.id, function(err, foundEntry){
 		res.render("edit.ejs", {entry: foundEntry});
 		})
 	})
-app.put("/posts/:id", (req, res) => {
+app.put("/:id", (req, res) => {
 	Entry.findByIdAndUpdate(req.params.id, req.body, function(err, foundEntry){
-		res.redirect("/posts/" + req.params.id);
+		res.redirect("/" + req.params.id);
 		})
 	})
-app.delete("/posts/:id", (req, res) =>{
+app.delete("/:id", (req, res) =>{
 	Entry.findByIdAndRemove(req.params.id, function(deletedEntry){
-		res.redirect("/posts");
+		res.redirect("/");
 	})
 })
 
@@ -104,7 +101,7 @@ app.post("/login", (req, res) => {
 	let username = req.body.username;
 	let password = req.body.password;
 	if (username == "Matt123" && password == "password"){
-		res.redirect("/form")
+		res.redirect("/allposts")
 	}
 })
 

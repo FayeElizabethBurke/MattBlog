@@ -1,10 +1,13 @@
 <% include partials/header.ejs %>
 <br>
 <br>
+<div class="container" style="text-align: center; margin-bottom: 15px;">
+	<a href="/allPosts" class="btn btn-secondary">Back</a>
+</div>
 <div class="container" style="text-align: center; border: 1.5px solid lightgrey;">
 	<h2>Edit <%= entry.title %></h2>
 
-<form action="/posts/<%= entry._id %>?_method=PUT" method="POST">
+<form action="/<%= entry._id %>?_method=PUT" method="POST">
 	<div class="wrapper">
 		<div class="form-group">
 		<input class="formElement" type="text" name="title" value="<%= entry.title %>"><br>

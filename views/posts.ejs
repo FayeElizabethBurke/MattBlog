@@ -9,6 +9,7 @@
 <%     }; 										%>
 
 <!-- index page collapser -->
+
 <div class="wrapper">
 <div class="collapse show" id="collapseExample">
 <div class="jumbotron" id="postPage">
@@ -40,7 +41,7 @@
                 <div class="card-body">
                     <h3><%= mostRecent.caption %></h3><br>
                     <p class="card-text"><%- mostRecent.content %></p>
-					<a href="/posts/<%= mostRecent._id %>" class="btn btnStyle"><strong>Read</strong></a>
+					<a href="/<%= mostRecent._id %>" class="btn btnStyle center"><strong>Read</strong></a>
                 </div>
             </div>
     	</div>
@@ -54,7 +55,7 @@
                 <p class="card-text"><%= previousPrev %>.</p>
                 <p class="card-text"><small class="text-muted"><%= previous.date.toDateString() %></small></p>
             </div>
-			<a href="/posts/<%= previous._id %>" class="btn btnStyle">Read</a>
+			<a href="/<%= previous._id %>" class="btn btnStyle">Read</a>
         </div>
     </div>
 	</div>
@@ -67,13 +68,26 @@
 				<img src="<%= oldie.image %>" class="oldImg">
 				<div class="text">
 					<h3><strong><%= oldie.title %></strong></h3>
-					<a href="/posts/<%= oldie._id %>" class="btn btnStyle"><strong>Read</strong></a>
+					<br>
+					<a href="/<%= oldie._id %>" class="btn btnStyle"><strong>Read</strong></a>
 				</div>
 			</div>
 		<%})%>
 		</div>
 	</div>
-<a href="/login" class="btn">Login</a>
+
+
+
+<button type="button" class="btn center" data-toggle="modal" data-target=".bd-example-modal-sm">Login</button>
+
+<div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-sm">
+    <div class="modal-content">
+      <% include login %>
+    </div>
+  </div>
+</div>
+
 
 <% include partials/footer.ejs %>
 

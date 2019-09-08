@@ -1,17 +1,29 @@
 <% include partials/header %>
-<% entry.forEach(function(post){ %>
-<h2>
-	<%= post.title %>
-</h2>
-<h3>
-	<%= post.caption %>
-</h3>
-<div>
-			<form action="/posts/<%= post._id %>?_method=DELETE" method="POST">
-		<button class="btn">Delete Post</button>
-		</form>
-<a href="/posts/<%= post._id %>/edit" class="btn">Edit Post</button>
+
+<div class="container" style="text-align: center; margin-top: 20px;">
+	<a href="/form" class="btn btn-info"> + Add New</a>
 </div>
+<% entry = entry.reverse() %>
+<% entry.forEach(function(post){ %>
+<div class="container">
+	<div class="allPost">
+	<h2 style="text-align: center;">Title: <%= post.title %></h2>	
+		<form action="/<%= post._id %>?_method=DELETE" method="POST">
+		<button style="margin-left: 34px;" class="btn btn-danger">Delete Post</button>
+	</form>	
+	</p>
+
+	<p>
+	<button class="btn btn-warning">
+		<a style="color: black;" href="/<%= post._id %>/edit">Edit Post</a>
+	</button>
+	</p>	
+<br>
+	<p><strong>Caption: </strong><%= post.caption %></p>
+	<p><strong>Date posted: </strong><%= post.date.toDateString() %></p>
+	<p>
+</div>
+	</div>
 
 <% }); %>
 

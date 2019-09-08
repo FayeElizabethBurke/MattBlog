@@ -1,9 +1,13 @@
 <% include partials/header %>
-
-<form action="/login" method="POST">
-	<input type="text" name="username" placeholder="username">
-	<input type="password" name="password" placeholder="password">
-	<button>Login</button>
+<div class="container" style="border: 10px solid grey;">
+	<div style="margin: 20px; margin-top: 25px; text-align: center;">
+			<form action="/login" method="POST">
+	<input class="form-control" type="text" name="username" placeholder="Username">
+	<input class="form-control" type="password" name="password" placeholder="Password">
+	<button class="btn">Login</button>
 </form>
+	</div>
+</div>
+
 
 <% include partials/footer %>
