@@ -14,7 +14,15 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs"); 
 
 //connect to mongoose
-mongoose.connect('mongodb://localhost:27017/matts_blog', {useNewUrlParser: true});
+// mongoose.connect('mongodb://localhost:27017/matts_blog', {useNewUrlParser: true});
+mongoose.connect('mongodb+srv://FayeBurke:Cuteytn11!@cluster0-l8mai.mongodb.net/test?retryWrites=true&w=majority', {
+	useNewUrlParser: true, 
+	useCreateIndex: true })
+.then(() => {
+	   console.log('connected to MongoDB')
+	   
+});
+
 
 //database model setup
 let postSchema = new mongoose.Schema({
